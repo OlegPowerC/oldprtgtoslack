@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  messnotfy:
+    image: ciscoliveru/messnotify:latest
+    restart: always
+    environment:
+      SLACK_URL: <Your Webhook URL like: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX>
+    ports:
+      - 8788:8788
