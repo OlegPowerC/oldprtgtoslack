@@ -50,8 +50,7 @@ func main() {
 				fmt.Println(err)
 			}
 
-			qstring1 := string(body)
-			qstring2, _ := url.QueryUnescape(qstring1)
+			qstring2, _ := url.QueryUnescape(string(body))
 
 			tr := &http.Transport{
 				TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
@@ -60,7 +59,6 @@ func main() {
 			timeout := time.Duration(10 * time.Second)
 			client := &http.Client{Transport: tr, Timeout: timeout}
 
-			//Получние токена для дальнейших запросов
 			req, _ := http.NewRequest("POST", JParam.SlackURL, strings.NewReader(qstring2))
 			resp, dreq := client.Do(req)
 			if dreq != nil {
